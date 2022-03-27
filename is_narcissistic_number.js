@@ -28,5 +28,3 @@ function narcissistic(value) {
 
  return sum === value
 }
-
-const result = narcissistic(371)
