@@ -29,20 +29,21 @@
 // Note for C
 // The two arrays have the same size (> 0) given as parameter in function comp.
 
-function comp(array1, array2){
-    console.log(array1)
-    console.log(array2)
 
+// The optimal solution!
+function smartComp(a, b) {
+    if (!a || !b || a.length !== b.length) return false;
+    return a.map(x => x * x).sort().toString() === b.sort().toString();
+}
+
+function comp(array1, array2){
     if (Array.isArray(array1) === false || Array.isArray(array2) === false) {
-        console.log(false, 1)
         return false
     }
 
     if (array1.length !== array2.length) {
-        console.log(false, 3)
         return false
     }
-
 
     const sorted1 = array1.map(item => item * item).sort(function(a, b) {
         return a - b;
