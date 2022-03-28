@@ -30,32 +30,37 @@
 // The two arrays have the same size (> 0) given as parameter in function comp.
 
 function comp(array1, array2){
+    console.log(array1)
+    console.log(array2)
+
     if (Array.isArray(array1) === false || Array.isArray(array2) === false) {
+        console.log(false, 1)
         return false
     }
 
-    if(array1.length === 0 || array2.length === 0) {
+    if (array1.length !== array2.length) {
+        console.log(false, 3)
         return false
     }
 
-    // if(array1.length !== array2.length) {
-    //     return false
-    // }
 
-    const squareRoots = array2.map(elem => Math.sqrt(elem))
-    console.log(squareRoots)
+    const sorted1 = array1.map(item => item * item).sort(function(a, b) {
+        return a - b;
+    });
 
-    console.log(squareRoots.every(item => array1.includes(item)))
+    const sorted2 = array2.sort(function(a, b) {
+        return a - b;
+    });
+
+
+    let result = true;
+
+    for (let i = 0; i < sorted1.length; i++ ) {
+        if(sorted1[i] !== sorted2[i]) {
+            result = false
+            break
+        }
+    }
+
+    return result
 }
-
-// false
-const a1 =  [3, 7, 2, 0, 8, 0, 9, 8, 10, 6, 1, 7, 10, 7, 1, 0, 8, 5, 2, 4, 10, 6];
-const a2 =  [9, 0, 64, 36, 100, 64, 0, 1, 4, 1, 64, 49, 49, 4, 36, 49, 1, 81, 100, 100, 16, 25];
-
-comp(a1, a2);
-
-// true
-// const a3 = [121, 144, 19, 161, 19, 144, 19, 11];
-// const a4 = [11*11, 121*121, 144*144, 19*19, 161*161, 19*19, 144*144, 19*19];
-
-// comp(a3, a4);
