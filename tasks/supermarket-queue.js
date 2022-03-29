@@ -27,68 +27,28 @@
 // The front person in the queue (i.e. the first element in the array/list) proceeds to a till as soon as it becomes free.
 
 function queueTime(customers, n) {
-    // делим на n массивов через одного. Каждый n-ый отправляется в свой массив по очереди
-
-    // количество массивов для разбиения = 3
-    // i+1 отправляется в массив i+1
-    // до тех пор, пока не закончатся элементы в массиве
-
-    let boxes = {}
-    for (let i = 0; i < n; i++) {
-        boxes[i] = []
+    if((customers || []).length === 0) {
+        return 0
     }
-
-    // console.log(boxes)
 
     let size = n;
     let subarray = [];
     for (let i = 0; i <Math.ceil(customers.length/size); i++){
         subarray[i] = customers.slice((i*size), (i*size) + size);
     }
-    console.log(subarray);
-
-    // for (let i = 0; i < n; i++) {
-    //     boxes[i].push(subarray[i][i])
-    // }
-
-    // console.log(boxes)
-
-    subarray.forEach((item, index)=> {
-        // console.log(item)
-        // console.log(index)
-        item.forEach((item, index) => {
-            console.log(item[index])
-        })
-
-        // boxes[index].push(item[index])
-        // console.log(item)
-    })
-
-    boxes[0].push(subarray[0][0])
-    boxes[0].push(subarray[1][0])
-    boxes[0].push(subarray[2][0])
-    boxes[0].push(subarray[3][0])
 
 
+    let boxes = {}
+    for (let i = 0; i < n; i++) {
+        boxes[i] = subarray.map(item => item[i]).reduce((prev, curr) => prev + curr)
+    }
 
+    let times = []
+    for (let i = 0; i < n; i++) {
+        times.push(boxes[i])
+    }
 
-    boxes[0].push(subarray[0][0])
-    boxes[1].push(subarray[0][1])
-    boxes[2].push(subarray[0][2])
-
-    boxes[0].push(subarray[1][0])
-    boxes[1].push(subarray[1][1])
-    boxes[2].push(subarray[2][2])
-
-    boxes[0].push(subarray[2][0])
-    boxes[1].push(subarray[2][1])
-    boxes[2].push(subarray[1][2])
-
-    boxes[0].push(subarray[3][0])
-    boxes[1].push(subarray[3][1])
-    boxes[2].push(subarray[3][2])
-
-    // console.log(boxes)
+   return Math.max(...times)
 }
 
 queueTime([2,2,3,3,4,4,5,5,6,2,4,5], 3)
