@@ -31,24 +31,16 @@ function queueTime(customers, n) {
         return 0
     }
 
-    let size = n;
-    let subarray = [];
-    for (let i = 0; i <Math.ceil(customers.length/size); i++){
-        subarray[i] = customers.slice((i*size), (i*size) + size);
+    let tills = Array(n).fill(0)
+
+    for (let i = 0; i < customers.length; i++) {
+        const shortest_till = tills.indexOf(Math.min(...tills))
+
+        tills[shortest_till] += customers[i]
     }
 
-
-    let boxes = {}
-    for (let i = 0; i < n; i++) {
-        boxes[i] = subarray.map(item => item[i]).reduce((prev, curr) => prev + curr)
-    }
-
-    let times = []
-    for (let i = 0; i < n; i++) {
-        times.push(boxes[i])
-    }
-
-   return Math.max(...times)
+   // return Math.max(...tills)
+   console.log(Math.max(...tills))
 }
 
 queueTime([2,2,3,3,4,4,5,5,6,2,4,5], 3)
