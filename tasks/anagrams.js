@@ -12,3 +12,11 @@
 // anagrams('abba', ['aabb', 'abcd', 'bbaa', 'dada']) => ['aabb', 'bbaa']
 // anagrams('racer', ['crazer', 'carer', 'racar', 'caers', 'racer']) => ['carer', 'racer']
 // anagrams('laser', ['lazing', 'lazy',  'lacer']) => []
+
+function findAnagrams(word, words) {
+    const sortedWord = word.split('').sort().join('')
+
+    return words.filter(item => item.split('').sort().join('') === sortedWord)
+}
+
+findAnagrams('racer', ['crazer', 'carer', 'racar', 'caers', 'racer'])
