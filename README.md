@@ -1,3 +1,3 @@
 # codewars_tasks
 
-test
+Задачки с [codewars.com](https://www.codewars.com/)
