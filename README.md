@@ -1,3 +1,5 @@
 # codewars_tasks
 
-Задачки с [codewars.com](https://www.codewars.com/)
+Задачи с [codewars.com](https://www.codewars.com/users/Nataliasem)
+
+
