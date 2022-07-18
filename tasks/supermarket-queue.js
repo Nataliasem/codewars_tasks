@@ -31,16 +31,19 @@ function queueTime(customers, n) {
         return 0
     }
 
-    let tills = Array(n).fill(0)
+    const queue = [...customers]
 
-    for (let i = 0; i < customers.length; i++) {
-        const shortest_till = tills.indexOf(Math.min(...tills))
+    const tills = Array(Math.min(n, queue.length)).fill(0)
 
-        tills[shortest_till] += customers[i]
+    while(queue.length) {
+        const customer = queue.shift()
+
+        const tillMin = tills.indexOf(Math.min(...tills))
+
+        tills[tillMin] += customer
     }
 
-   // return Math.max(...tills)
-   console.log(Math.max(...tills))
+   return Math.max(...tills)
 }
 
 queueTime([2,2,3,3,4,4,5,5,6,2,4,5], 3)
