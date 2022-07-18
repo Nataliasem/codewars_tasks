@@ -16,34 +16,24 @@
 // [ [ [ ], [ ] ] ].sameStructureAs( [ [ 1, 1 ] ] );
 
 
-// не массив - верни букву или цифру
-// массив - верни длину массива
-// преобразуй в строку и сравни
+function transformStructure(checked){
+    if (!Array.isArray(checked)){
+        return 'a'
+    }
 
+    if (checked.every(item => !Array.isArray(item))){
+        return checked.length
+    }
 
-
-
-const compareNestingStructure = (array1, array2) => {
-    const comparable1 = array1.map(item => {
-        if(Array.isArray(item) === false) {
-            return 'a'
-        }
-
-        return item.map(i => Array.isArray(i) ? i.length : 'a').join('')
-    })
-
-    console.log(comparable1)
-
-    const comparable2 = array2.map(item => {
-        if(Array.isArray(item) === false) {
-            return 'a'
-        }
-
-        return item.map(i => Array.isArray(i) ? i.length : 'a').join('')
-    })
-
-    console.log(comparable2)
+    return checked.map(elem=>transformStructure(elem)).join('')
 }
 
-compareNestingStructure([ 1, [ 1, 1, [9, [0, 9 ]] ] ], [ [ 2, 2 ], 2 ])
+const compareNestingStructure = (array1, array2) => {
+    const comparableString1 = transformStructure(array1)
+    const comparableString2 = transformStructure(array2)
+
+    return comparableString1 === comparableString2
+}
+
+compareNestingStructure([ 1, [ 1, 1, [9, [0, 9 ]] ] ], [ [ 1, 1 ] ])
 
