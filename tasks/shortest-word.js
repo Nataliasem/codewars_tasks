@@ -6,3 +6,15 @@ function findShort(checkedString) {
 
     return Math.min(...splitString.map(item => item.length))
 }
+
+function findShortBySort(checkedString) {
+    const splitString = checkedString.split(' ')
+
+    const splitSorted = splitString.sort((a, b) => {
+        return a.length - b.length
+    })
+
+    return splitSorted[0]
+}
+
+console.log(findShortBySort('123 woierowieurowue 345683 sd a'))
