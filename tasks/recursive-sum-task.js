@@ -73,5 +73,3 @@ function iterate(arr) {
 iterate(test)
 
 console.log(sum)
-
-
